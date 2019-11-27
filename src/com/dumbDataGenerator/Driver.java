@@ -4,25 +4,15 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Driver {
+
+	public static String testPath = "Test.csv";
 	public static void main(String[] args) {
 
         //String slotsPath = "C:\\Users\\carrilloc.YGA\\Desktop\\BCSlotAnalyticsReport.csv";
-        String testPath = "Test.csv";
-
-
+        
 		View view = new View();
-        ReadCSV reader = new ReadCSV(testPath);
-        getOriginalData(reader);
-
+		ReadCSV reader = new ReadCSV();
+		WriteCSV writer = new WriteCSV();
+		Controller controller = new Controller(view, reader, writer);
     }
-
-    private static void getOriginalData(ReadCSV reader) {
-        try {
-            List<List<String>> rows = reader.readCSV();
-            rows.forEach(System.out::println);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
 }

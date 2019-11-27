@@ -9,13 +9,7 @@ import java.util.Scanner;
 
 class ReadCSV {
 
-    private String path;
-
-    ReadCSV(String path) {
-        this.path = path;
-    }
-
-    List<List<String>> readCSV() throws FileNotFoundException {
+    List<List<String>> readCSV(String path) throws FileNotFoundException {
         Scanner scanner = new Scanner(new File(path));
         List<String> list = new ArrayList<>();
 

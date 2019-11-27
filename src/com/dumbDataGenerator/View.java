@@ -1,11 +1,28 @@
 package com.dumbDataGenerator;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class View {
 
     private GridBagConstraints c = new GridBagConstraints();
+    //private String inputPath = "C:\\Users\\carrilloc.YGA\\Desktop\\DummyFolder\";
+    private String outputPath = "C:\\Users\\carrilloc.YGA\\Desktop\\DummyFolder\\output.csv";
 
     public View() {
         JFrame frame = new JFrame("Dummy Data Generator");
@@ -126,18 +143,24 @@ public class View {
         return originalLabel;
     }
 
+    private JTextField originalField;
     private JTextField originalField() {
         c.gridx = 1;
         c.gridy = 0;
         c.insets = new Insets(0,0,25,0);
-        JTextField originalField = new JTextField();
+        originalField = new JTextField();
         originalField.setBorder(BorderFactory.createLineBorder(Color.GRAY));
         originalField.setPreferredSize(new Dimension(300,20));
         originalField.setBorder(BorderFactory.createEmptyBorder(3,3,3,3));
         originalField.setCaretColor(Color.ORANGE);
+        originalField.setText(Driver.testPath);
         setFont(originalField, Color.BLACK, Color.ORANGE, 15);
         return originalField;
     }
+    public String getOriginalFieldText() {
+    	return originalField.getText();
+    }
+    
 
     private JLabel dummyLabel() {
         c.gridx = 0;
@@ -148,17 +171,22 @@ public class View {
         return dummyLabel;
     }
 
+    private JTextField dummyField;
     private JTextField dummyField() {
         c.gridx = 1;
         c.gridy = 1;
         c.insets = new Insets(0,0,0,0);
-        JTextField dummyField = new JTextField();
+        dummyField = new JTextField();
         dummyField.setBorder(BorderFactory.createLineBorder(Color.GRAY));
         dummyField.setPreferredSize(new Dimension(300,20));
         dummyField.setBorder(BorderFactory.createEmptyBorder(3,3,3,3));
         dummyField.setCaretColor(Color.ORANGE);
+        dummyField.setText(outputPath);
         setFont(dummyField, Color.BLACK, Color.ORANGE, 15);
         return dummyField;
+    }
+    public String getDummyFieldText() {
+    	return dummyField.getText();
     }
 
     //South panel \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
@@ -170,16 +198,21 @@ public class View {
         return southPanel;
     }
 
+    private JButton generateButton;
     private JButton generateButton() {
         c.gridx = 0;
         c.gridy = 0;
         c.insets = new Insets(10,0,30,0);
-        JButton generateButton = new JButton("Generate");
+        generateButton = new JButton("Generate");
         generateButton.setPreferredSize(new Dimension(150,30));
         setFont(generateButton, new Color(0,153,153), Color.WHITE, 17);
         generateButton.setFocusPainted(false);
         return generateButton;
     }
+    public void generateButtonListener(ActionListener l) {
+    	generateButton.addActionListener(l);
+    }
+    
 
     private void setFont(JComponent comp, Color bg, Color fg, int size) {
         comp.setFont(new Font("Consolas", 0, size));
