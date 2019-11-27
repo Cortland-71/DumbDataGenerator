@@ -12,11 +12,13 @@ public class Controller implements ActionListener {
 	private WriteCSV write;
 	private String originalFieldText;
 	private String dummyFieldText;
+	private Shifter shifter;
 	
-	public Controller(View view, ReadCSV read, WriteCSV write) {
+	public Controller(View view, ReadCSV read, WriteCSV write, Shifter shifter) {
 		this.view = view;
 		this.read = read;
 		this.write = write;
+		this.shifter = shifter;
 		this.view.generateButtonListener(this);
 	}
 
@@ -24,7 +26,11 @@ public class Controller implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		originalFieldText = view.getOriginalFieldText();
 		dummyFieldText = view.getDummyFieldText();
-		write.writeCSV(dummyFieldText, getOriginalData());
+		List<List<String>> originalData = getOriginalData();
+		originalData.forEach(System.out::println);
+		List<List<String>> shiftedLists = shifter.getShiftedLists(originalData);
+		shiftedLists.forEach(System.out::println);
+		write.writeCSV(dummyFieldText, shiftedLists);
 	}
 	
 	private List<List<String>> getOriginalData() {

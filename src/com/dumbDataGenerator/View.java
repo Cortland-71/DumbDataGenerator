@@ -153,7 +153,8 @@ public class View {
         originalField.setPreferredSize(new Dimension(300,20));
         originalField.setBorder(BorderFactory.createEmptyBorder(3,3,3,3));
         originalField.setCaretColor(Color.ORANGE);
-        originalField.setText(Driver.testPath);
+        //originalField.setText(Driver.testPath);
+        originalField.setText(Driver.slotsPath);
         setFont(originalField, Color.BLACK, Color.ORANGE, 15);
         return originalField;
     }
