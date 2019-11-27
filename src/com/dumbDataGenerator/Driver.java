@@ -7,10 +7,12 @@ public class Driver {
 	public static void main(String[] args) {
 
         //String slotsPath = "C:\\Users\\carrilloc.YGA\\Desktop\\BCSlotAnalyticsReport.csv";
-        String testPath = "test.csv";
+        String testPath = "Test.csv";
 
-        View view = new View();
+
+		View view = new View();
         ReadCSV reader = new ReadCSV(testPath);
+        getOriginalData(reader);
 
     }
 
