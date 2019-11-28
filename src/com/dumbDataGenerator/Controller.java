@@ -13,6 +13,9 @@ public class Controller implements ActionListener {
 	private String originalFieldText;
 	private String dummyFieldText;
 	private Shifter shifter;
+	private boolean headerSelected;
+	private boolean stringSelected;
+	private boolean numberSelected;
 	
 	public Controller(View view, ReadCSV read, WriteCSV write, Shifter shifter) {
 		this.view = view;
@@ -26,10 +29,17 @@ public class Controller implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		originalFieldText = view.getOriginalFieldText();
 		dummyFieldText = view.getDummyFieldText();
+		headerSelected = view.getHeaderCheckBoxChecked();
+		stringSelected = view.getStringCheckBoxChecked();
+		numberSelected = view.getNumbersCheckBoxChecked();
+		
 		List<List<String>> originalData = getOriginalData();
 		originalData.forEach(System.out::println);
-		List<List<String>> shiftedLists = shifter.getShiftedLists(originalData);
+		
+		List<List<String>> shiftedLists = shifter.getShiftedLists(originalData, 
+				Arrays.asList(stringSelected, numberSelected, headerSelected));
 		shiftedLists.forEach(System.out::println);
+		
 		write.writeCSV(dummyFieldText, shiftedLists);
 	}
 	

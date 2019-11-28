@@ -69,6 +69,8 @@ public class View {
         southInNorthPanel.add(includeStringsCheckBox(), c);
         southInNorthPanel.add(includeNumbersLabel(), c);
         southInNorthPanel.add(includeNumbersCheckBox(), c);
+        southInNorthPanel.add(includeHeaderLabel(), c);
+        southInNorthPanel.add(includeHeaderCheckBox(), c);
         return southInNorthPanel;
     }
 
@@ -92,14 +94,18 @@ public class View {
         return includeStringLabel;
     }
 
+    private JCheckBox includeStringCheckBox;
     private JCheckBox includeStringsCheckBox() {
         c.gridx = 1;
         c.gridy = 0;
         c.insets = new Insets(20,0,5,20);
-        JCheckBox includeStringCheckBox = new JCheckBox();
+        includeStringCheckBox = new JCheckBox();
         includeStringCheckBox.setBorder(BorderFactory.createLineBorder(Color.GRAY));
         setFont(includeStringCheckBox, Color.BLACK, Color.WHITE, 12);
         return includeStringCheckBox;
+    }
+    public boolean getStringCheckBoxChecked() {
+    	return includeStringCheckBox.isSelected();
     }
 
     private JLabel includeNumbersLabel() {
@@ -111,14 +117,41 @@ public class View {
         return includeNumbersLabel;
     }
 
+    private JCheckBox includeNumbersCheckBox;
     private JCheckBox includeNumbersCheckBox() {
         c.gridx = 3;
         c.gridy = 0;
-        c.insets = new Insets(20,0,5,0);
-        JCheckBox includeNumbersCheckBox = new JCheckBox();
+        c.insets = new Insets(20,0,5,20);
+        includeNumbersCheckBox = new JCheckBox();
         includeNumbersCheckBox.setBorder(BorderFactory.createLineBorder(Color.GRAY));
         setFont(includeNumbersCheckBox, Color.BLACK, Color.WHITE, 12);
         return includeNumbersCheckBox;
+    }
+    public boolean getNumbersCheckBoxChecked() {
+    	return includeNumbersCheckBox.isSelected();
+    }
+    
+    private JLabel includeHeaderLabel() {
+        c.gridx = 4;
+        c.gridy = 0;
+        c.insets = new Insets(20,20,5,10);
+        JLabel includeHeaderLabel = new JLabel("Include dummy header");
+        setFont(includeHeaderLabel, Color.BLACK, Color.WHITE, 12);
+        return includeHeaderLabel;
+    }
+
+    private JCheckBox includeHeaderCheckBox;
+    private JCheckBox includeHeaderCheckBox() {
+        c.gridx = 5;
+        c.gridy = 0;
+        c.insets = new Insets(20,0,5,0);
+        includeHeaderCheckBox = new JCheckBox();
+        includeHeaderCheckBox.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        setFont(includeHeaderCheckBox, Color.BLACK, Color.WHITE, 12);
+        return includeHeaderCheckBox;
+    }
+    public boolean getHeaderCheckBoxChecked() {
+    	return includeHeaderCheckBox.isSelected();
     }
 
     //Center panel \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
@@ -153,8 +186,8 @@ public class View {
         originalField.setPreferredSize(new Dimension(300,20));
         originalField.setBorder(BorderFactory.createEmptyBorder(3,3,3,3));
         originalField.setCaretColor(Color.ORANGE);
-        //originalField.setText(Driver.testPath);
-        originalField.setText(Driver.slotsPath);
+        originalField.setText(Driver.testPath);
+        //originalField.setText(Driver.slotsPath);
         setFont(originalField, Color.BLACK, Color.ORANGE, 15);
         return originalField;
     }

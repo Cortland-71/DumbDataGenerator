@@ -18,19 +18,31 @@ public class Shifter {
 		this.allNumbers.forEach(System.out::print);
 	}
 	
-	public List<List<String>> getShiftedLists(List<List<String>> lists) {
-		
+	public List<List<String>> getShiftedLists(List<List<String>> lists, List<Boolean> selected) {
 		List<List<String>> finalList = new ArrayList<>();
+		List<List<String>> inputLists;
 		
-		for (List<String> list : lists) {
+		
+		if (selected.get(2)) inputLists = lists;
+		else {
+			inputLists = lists.subList(1, lists.size());
+			finalList.add(lists.get(0));
+		}
+		
+		
+		for (List<String> list : inputLists) {
 			List<String> singleList = new ArrayList<>();
 			for (String i : list) {
 				StringBuilder sb = new StringBuilder();
 				for (String e : i.split("")) {
 					if (allChars.contains(e)) {
-						appendElement(allChars, sb, e);
+						if (selected.get(0)) appendElement(allChars, sb, e);
+					    else sb.append(e);
 					} else if (allNumbers.contains(e)) {
-						appendElement(allNumbers, sb, e);
+						if (selected.get(1)) appendElement(allNumbers, sb, e);
+						else sb.append(e);
+					} else {
+						sb.append(e);
 					}
 				}
 				singleList.add(sb.toString());
